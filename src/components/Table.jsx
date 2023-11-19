@@ -13,30 +13,14 @@ import {
   TableContainer,
 } from "@chakra-ui/react";
 
-function Tablex({
-  users,
-  setUsers,
-  products,
-  setProducts,
-  isLogged,
-  setisLogged,
-  isRegistered,
-  setisRegistered,
-}) {
+function Tablex({ products, setProducts, users, setUsers }) {
   console.log(products);
-  console.log(users);
 
   console.log(users.filter((elem) => elem.isAdmin === true).length);
-  console.log(isLogged);
 
   return (
     <>
-      <Add
-        products={products}
-        setProducts={setProducts}
-        users={users}
-        setUsers={setUsers}
-      />
+      <Add products={products} setProducts={setProducts} />
       <TableContainer>
         <Table variant="striped" colorScheme="grey600">
           <TableCaption>Products</TableCaption>

@@ -3,14 +3,7 @@ import { useRef } from "react";
 import { Button, ButtonGroup } from "@chakra-ui/react";
 import { FormControl, FormLabel, Input } from "@chakra-ui/react";
 import { ClassNames } from "@emotion/react";
-function Login({
-  users,
-  setUsers,
-  isLogged,
-  setisLogged,
-  isRegistered,
-  setisRegistered,
-}) {
+function Login({ users, setUsers, isLogged, setisLogged }) {
   const name = useRef("");
   const pass = useRef("");
   return (
@@ -24,30 +17,28 @@ function Login({
           colorScheme="red"
           onClick={(e) => {
             console.log(users);
-            console.log("before log", isLogged);
+            console.log("before log");
 
             // console.log(name.current.value)
             // console.log(pass.current.value)
             // console.log(user.name)
 
-            users.forEach((user) => {
+            users.map((user) => {
               console.log(user);
               console.log(name.current.value);
               console.log(user.password, pass.current.value);
+              let searched = users.find(
+                (user) =>
+                  user.name === name.current.value &&
+                  user.password === pass.current.value
+              );
 
-              if (
-                user.name === name.current.value &&
-                user.password === pass.current.value
-              ) {
-                console.log("indi 2ci defe acilmalidir");
-                name.current.value = "";
-                pass.current.value = "";
-                console.log("True");
+              if (searched) {
+                console.log("User found");
+                setisLogged(true);
               } else {
-                name.current.value = "";
-                pass.current.value = "";
-                console.log("sifirlandi");
-                // return <Button>Go to Register</Button>
+                console.log("User not found");
+                setisLogged(false);
               }
             });
           }}
